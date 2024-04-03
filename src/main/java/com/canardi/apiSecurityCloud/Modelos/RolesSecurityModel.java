@@ -12,7 +12,7 @@ import lombok.Setter;
 @Entity(name = "Roles")
 public class RolesSecurityModel {
 
-    public RolesSecurityModel(Long id, RolesNames nombreRol) {
+    public RolesSecurityModel(RolesNames nombreRol) {
         this.nombreRol = nombreRol;
     }
 
