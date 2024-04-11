@@ -16,5 +16,18 @@ public class UsuariosService {
     public ArrayList<UsuarioModel> obtenerUsuarios(){
         return (ArrayList<UsuarioModel>) usuariosRepository.findAll();
     }
+    public UsuarioModel crearUsuario(UsuarioModel usuarioModel){
+        return this.usuariosRepository.save(usuarioModel);
+    }
+    public Boolean eliminarUsuario(Long id){
+        try{
+            this.usuariosRepository.deleteById(id);
+            return true;
+        }catch(Exception exception){
+            return false;
+        }
+    }
+
+
 
 }
