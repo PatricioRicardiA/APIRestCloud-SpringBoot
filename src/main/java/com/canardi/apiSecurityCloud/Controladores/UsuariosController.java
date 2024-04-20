@@ -14,6 +14,11 @@ public class UsuariosController {
     @Autowired
     private UsuariosService usuariosService;
 
+    @GetMapping("/test")
+    public String testo(){
+        return "TEST";
+    }
+
     @GetMapping()
     public ArrayList<UsuarioModel> obtenerUsuarios(){
         return this.usuariosService.obtenerUsuarios();

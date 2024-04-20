@@ -5,6 +5,7 @@ import com.canardi.apiSecurityCloud.Servicios.UsuariosService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -30,8 +31,10 @@ public class WebSecurityConfig {
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception{
         return http.httpBasic().and().authorizeHttpRequests()
-                .anyRequest().hasAuthority("WRITE")
-                .and().build();
+                .requestMatchers("/Usuarios").authenticated()
+                .requestMatchers(HttpMethod.POST,"/Usuarios").hasAnyAuthority("ADMIN","WRITE")
+                .requestMatchers(HttpMethod.DELETE,"/Usuarios/{id}").hasAuthority("ADMIN")
+                .and().csrf().disable().build();
     }
 
     @Bean
