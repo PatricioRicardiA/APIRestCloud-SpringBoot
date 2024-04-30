@@ -24,10 +24,6 @@ public class Runner implements CommandLineRunner {
     @Override
     public void run(String... args) throws Exception {
 
-        this.credencialesRepository.saveAll(List.of(
-                new CredencialesSecurityModel("Lolo","457", List.of(this.rolesRepository.findBynombreRol(RolesNames.WRITE).get())),new CredencialesSecurityModel("Sebas","890", List.of(this.rolesRepository.findBynombreRol(RolesNames.READ).get())))
-        );
-
         if (this.rolesRepository.count() == 0){
             this.rolesRepository.saveAll(List.of(
                     new RolesSecurityModel(RolesNames.ADMIN),
